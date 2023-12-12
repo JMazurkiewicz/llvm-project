@@ -15,3 +15,12 @@
 using JoinView = decltype(std::views::join(std::declval<std::vector<std::vector<int>>&>()));
 using JoinIter = std::ranges::iterator_t<JoinView>;
 static_assert(std::__is_segmented_iterator<JoinIter>::value);
+
+struct PublicChild : public JoinIter {};
+static_assert(!std::__is_segmented_iterator<PublicChild>::value);
+
+struct ProtectedChild : protected JoinIter {};
+static_assert(!std::__is_segmented_iterator<ProtectedChild>::value);
+
+struct PrivateChild : private JoinIter {};
+static_assert(!std::__is_segmented_iterator<PrivateChild>::value);

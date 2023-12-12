@@ -15,6 +15,7 @@
 #include <__concepts/copyable.h>
 #include <__concepts/derived_from.h>
 #include <__concepts/equality_comparable.h>
+#include <__concepts/same_as.h>
 #include <__config>
 #include <__iterator/concepts.h>
 #include <__iterator/iter_move.h>
@@ -192,20 +193,17 @@ namespace ranges {
     }
   };
 
-  // https://reviews.llvm.org/D142811#inline-1383022
-  // To simplify the segmented iterator traits specialization,
-  // make the iterator `final`
   template<input_range _View>
     requires view<_View> && input_range<range_reference_t<_View>>
   template<bool _Const>
-  struct join_view<_View>::__iterator final
-    : public __join_view_iterator_category<__maybe_const<_Const, _View>> {
+  struct join_view<_View>::__iterator : public __join_view_iterator_category<__maybe_const<_Const, _View>> {
     friend join_view;
 
     template <class>
     friend struct std::__segmented_iterator_traits;
 
-    static constexpr bool __is_join_view_iterator = true;
+    template <class _Tp>
+    static constexpr bool __is_join_view_iterator = same_as<_Tp, __iterator>;
 
   private:
     using _Parent = __maybe_const<_Const, join_view<_View>>;
@@ -423,7 +421,7 @@ inline namespace __cpo {
 } // namespace ranges
 
 template <class _JoinViewIterator>
-  requires(_JoinViewIterator::__is_join_view_iterator &&
+  requires(_JoinViewIterator::template __is_join_view_iterator<_JoinViewIterator> &&
            ranges::common_range<typename _JoinViewIterator::_Parent> &&
            __has_random_access_iterator_category<typename _JoinViewIterator::_Outer>::value &&
            __has_random_access_iterator_category<typename _JoinViewIterator::_Inner>::value)
