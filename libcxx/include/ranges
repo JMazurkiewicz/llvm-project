@@ -314,6 +314,11 @@ namespace std::ranges {
 
   namespace views { template<class T> inline constexpr unspecified istream = unspecified; }
 
+  // [range.adaptor.object], range adaptor objects
+  template<class D>
+    requires is_class_v<D> && same_as<D, remove_cv_t<D>>
+  class range_adaptor_closure { };                                          // C++23
+
   // [range.zip], zip view
   template<input_range... Views>
     requires (view<Views> && ...) && (sizeof...(Views) > 0)
@@ -397,6 +402,7 @@ namespace std {
 #include <__ranges/iota_view.h>
 #include <__ranges/join_view.h>
 #include <__ranges/lazy_split_view.h>
+#include <__ranges/range_adaptor.h>
 #include <__ranges/rbegin.h>
 #include <__ranges/ref_view.h>
 #include <__ranges/rend.h>
