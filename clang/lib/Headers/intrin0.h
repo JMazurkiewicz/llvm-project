@@ -30,6 +30,8 @@ void _ReadWriteBarrier(void);
 #if defined(__aarch64__) || defined(__arm64ec__)
 unsigned int _CountLeadingZeros(unsigned long);
 unsigned int _CountLeadingZeros64(unsigned _int64);
+unsigned int _CountTrailingZeros(unsigned long);
+unsigned int _CountTrailingZeros64(unsigned _int64);
 unsigned char _InterlockedCompareExchange128_acq(__int64 volatile *_Destination,
                                                  __int64 _ExchangeHigh,
                                                  __int64 _ExchangeLow,

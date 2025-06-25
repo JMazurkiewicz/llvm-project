@@ -554,6 +554,29 @@ unsigned int check__CountLeadingZeros64(__int64 arg1) {
 // CHECK-MSCOMPAT: ret i32 %[[VAR2]]
 // CHECK-LINUX: error: call to undeclared function '_CountLeadingZeros64'
 
+unsigned int check__CountTrailingZeros(unsigned LONG arg1) {
+  return _CountTrailingZeros(arg1);
+}
+
+// CHECK-MSCOMPAT: %[[ARG1:.*]].addr = alloca i32, align 4
+// CHECK-MSCOMPAT: store i32 %[[ARG1]], ptr %[[ARG1]].addr, align 4
+// CHECK-MSCOMPAT: %[[VAR0:.*]] = load i32, ptr %[[ARG1]].addr, align 4
+// CHECK-MSCOMPAT: %[[VAR1:.*]] = call i32 @llvm.cttz.i32(i32 %[[VAR0]], i1 false)
+// CHECK-MSCOMPAT: ret i32 %[[VAR1]]
+// CHECK-LINUX: error: call to undeclared function '_CountTrailingZeros'
+
+unsigned int check__CountTrailingZeros64(unsigned __int64 arg1) {
+  return _CountTrailingZeros64(arg1);
+}
+
+// CHECK-MSCOMPAT: %[[ARG1:.*]].addr = alloca i64, align 8
+// CHECK-MSCOMPAT: store i64 %[[ARG1]], ptr %[[ARG1]].addr, align 8
+// CHECK-MSCOMPAT: %[[VAR0:.*]] = load i64, ptr %[[ARG1]].addr, align 8
+// CHECK-MSCOMPAT: %[[VAR1:.*]] = call i64 @llvm.cttz.i64(i64 %[[VAR0]], i1 false)
+// CHECK-MSCOMPAT: %[[VAR2:.*]] = trunc i64 %[[VAR1]] to i32
+// CHECK-MSCOMPAT: ret i32 %[[VAR2]]
+// CHECK-LINUX: error: call to undeclared function '_CountTrailingZeros64'
+
 unsigned int check_CountOneBits(unsigned LONG arg1) {
   return _CountOneBits(arg1);
 }

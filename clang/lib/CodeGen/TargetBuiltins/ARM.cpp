@@ -5668,6 +5668,17 @@ Value *CodeGenFunction::EmitAArch64BuiltinExpr(unsigned BuiltinID,
     return Result;
   }
 
+  if (BuiltinID == AArch64::BI_CountTrailingZeros ||
+      BuiltinID == AArch64::BI_CountTrailingZeros64) {
+    Value *Arg = EmitScalarExpr(E->getArg(0));
+    Function *F = CGM.getIntrinsic(Intrinsic::cttz, Arg->getType());
+    Value *Result = Builder.CreateCall(F, {Arg, Builder.getInt1(false)});
+
+    if (BuiltinID == AArch64::BI_CountTrailingZeros64)
+      Result = Builder.CreateTrunc(Result, Builder.getInt32Ty());
+    return Result;
+  }
+
   if (BuiltinID == AArch64::BI_CountOneBits ||
       BuiltinID == AArch64::BI_CountOneBits64) {
     Value *ArgValue = EmitScalarExpr(E->getArg(0));
