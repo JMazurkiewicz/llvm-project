@@ -33,6 +33,25 @@ let Header = "intrin.h", Languages = "ALL_MS_LANGUAGES", Attributes = [NoThrow, 
   def __shiftright128 : X86LibBuiltin<"unsigned long long int(unsigned long long int, unsigned long long int, unsigned char)">;
 }
 
+let Header = "intrin.h", Languages = "ALL_MS_LANGUAGES", Attributes = [NoThrow, Const, RequireDeclaration] in {
+  def _sat_add_i8 : X86LibBuiltin<"signed char(signed char, signed char)">;
+  def _sat_add_i16 : X86LibBuiltin<"signed short(signed short, signed short)">;
+  def _sat_add_i32 : X86LibBuiltin<"signed int(signed int, signed int)">;
+  def _sat_add_i64 : X86LibBuiltin<"signed __int64(signed __int64, signed __int64)">;
+  def _sat_add_u8 : X86LibBuiltin<"unsigned char(unsigned char, unsigned char)">;
+  def _sat_add_u16 : X86LibBuiltin<"unsigned short(unsigned short, unsigned short)">;
+  def _sat_add_u32 : X86LibBuiltin<"unsigned int(unsigned int, unsigned int)">;
+  def _sat_add_u64 : X86LibBuiltin<"unsigned __int64(unsigned __int64, unsigned __int64)">;
+  def _sat_sub_i8 : X86LibBuiltin<"signed char(signed char, signed char)">;
+  def _sat_sub_i16 : X86LibBuiltin<"signed short(signed short, signed short)">;
+  def _sat_sub_i32 : X86LibBuiltin<"signed int(signed int, signed int)">;
+  def _sat_sub_i64 : X86LibBuiltin<"signed __int64(signed __int64, signed __int64)">;
+  def _sat_sub_u8 : X86LibBuiltin<"unsigned char(unsigned char, unsigned char)">;
+  def _sat_sub_u16 : X86LibBuiltin<"unsigned short(unsigned short, unsigned short)">;
+  def _sat_sub_u32 : X86LibBuiltin<"unsigned int(unsigned int, unsigned int)">;
+  def _sat_sub_u64 : X86LibBuiltin<"unsigned __int64(unsigned __int64, unsigned __int64)">;
+}
+
 let Features = "cx16", Header = "intrin.h", Languages = "ALL_MS_LANGUAGES", Attributes = [NoThrow, RequireDeclaration] in {
   def _InterlockedCompareExchange128 : X86LibBuiltin<"unsigned char(long long int volatile *, long long int, long long int, long long int *)">;
 }

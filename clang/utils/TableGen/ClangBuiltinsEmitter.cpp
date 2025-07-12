@@ -331,6 +331,7 @@ private:
                                .Case("__float128", "LLd")
                                .Case("__fp16", "h")
                                .Case("__int128_t", "LLLi")
+                               .Case("__int64", "LLi")
                                .Case("_Float16", "x")
                                .Case("__bf16", "y")
                                .Case("bool", "b")

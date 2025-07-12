@@ -208,4 +208,116 @@ unsigned __int64 test__shiftright128(unsigned __int64 l, unsigned __int64 h,
 // CHECK-X64: = tail call i64 @llvm.fshr.i64(i64 %h, i64 %l, i64 %{{.*}})
 // CHECK-X64:  ret i64 %
 
+signed char test_add_sat_i8(signed char x, signed char y) {
+  return _sat_add_i8(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i8 @test_add_sat_i8(i8 noundef %x, i8 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i8 @llvm.sadd.sat.i8(i8 %x, i8 %y)
+// CHECK-X64: ret i8 %[[VAR0:.*]]
+
+signed short test_add_sat_i16(signed short x, signed short y) {
+  return _sat_add_i16(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i16 @test_add_sat_i16(i16 noundef %x, i16 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i16 @llvm.sadd.sat.i16(i16 %x, i16 %y)
+// CHECK-X64: ret i16 %[[VAR0:.*]]
+
+signed int test_add_sat_i32(signed int x, signed int y) {
+  return _sat_add_i32(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i32 @test_add_sat_i32(i32 noundef %x, i32 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i32 @llvm.sadd.sat.i32(i32 %x, i32 %y)
+// CHECK-X64: ret i32 %[[VAR0:.*]]
+
+signed __int64 test_add_sat_i64(signed __int64 x, signed __int64 y) {
+  return _sat_add_i64(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i64 @test_add_sat_i64(i64 noundef %x, i64 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i64 @llvm.sadd.sat.i64(i64 %x, i64 %y)
+// CHECK-X64: ret i64 %[[VAR0:.*]]
+
+unsigned char test_add_sat_u8(unsigned char x, unsigned char y) {
+  return _sat_add_u8(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i8 @test_add_sat_u8(i8 noundef %x, i8 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i8 @llvm.uadd.sat.i8(i8 %x, i8 %y)
+// CHECK-X64: ret i8 %[[VAR0:.*]]
+
+unsigned short test_add_sat_u16(unsigned short x, unsigned short y) {
+  return _sat_add_u16(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i16 @test_add_sat_u16(i16 noundef %x, i16 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i16 @llvm.uadd.sat.i16(i16 %x, i16 %y)
+// CHECK-X64: ret i16 %[[VAR0:.*]]
+
+unsigned int test_add_sat_u32(unsigned int x, unsigned int y) {
+  return _sat_add_u32(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i32 @test_add_sat_u32(i32 noundef %x, i32 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i32 @llvm.uadd.sat.i32(i32 %x, i32 %y)
+// CHECK-X64: ret i32 %[[VAR0:.*]]
+
+unsigned __int64 test_add_sat_u64(unsigned __int64 x, unsigned __int64 y) {
+  return _sat_add_u64(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i64 @test_add_sat_u64(i64 noundef %x, i64 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i64 @llvm.uadd.sat.i64(i64 %x, i64 %y)
+// CHECK-X64: ret i64 %[[VAR0:.*]]
+
+signed char test_sub_sat_i8(signed char x, signed char y) {
+  return _sat_sub_i8(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i8 @test_sub_sat_i8(i8 noundef %x, i8 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i8 @llvm.ssub.sat.i8(i8 %x, i8 %y)
+// CHECK-X64: ret i8 %[[VAR0:.*]]
+
+signed short test_sub_sat_i16(signed short x, signed short y) {
+  return _sat_sub_i16(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i16 @test_sub_sat_i16(i16 noundef %x, i16 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i16 @llvm.ssub.sat.i16(i16 %x, i16 %y)
+// CHECK-X64: ret i16 %[[VAR0:.*]]
+
+signed int test_sub_sat_i32(signed int x, signed int y) {
+  return _sat_sub_i32(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i32 @test_sub_sat_i32(i32 noundef %x, i32 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i32 @llvm.ssub.sat.i32(i32 %x, i32 %y)
+// CHECK-X64: ret i32 %[[VAR0:.*]]
+
+signed __int64 test_sub_sat_i64(signed __int64 x, signed __int64 y) {
+  return _sat_sub_i64(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i64 @test_sub_sat_i64(i64 noundef %x, i64 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i64 @llvm.ssub.sat.i64(i64 %x, i64 %y)
+// CHECK-X64: ret i64 %[[VAR0:.*]]
+
+unsigned char test_sub_sat_u8(unsigned char x, unsigned char y) {
+  return _sat_sub_u8(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i8 @test_sub_sat_u8(i8 noundef %x, i8 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i8 @llvm.usub.sat.i8(i8 %x, i8 %y)
+// CHECK-X64: ret i8 %[[VAR0:.*]]
+
+unsigned short test_sub_sat_u16(unsigned short x, unsigned short y) {
+  return _sat_sub_u16(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i16 @test_sub_sat_u16(i16 noundef %x, i16 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i16 @llvm.usub.sat.i16(i16 %x, i16 %y)
+// CHECK-X64: ret i16 %[[VAR0:.*]]
+
+unsigned int test_sub_sat_u32(unsigned int x, unsigned int y) {
+  return _sat_sub_u32(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i32 @test_sub_sat_u32(i32 noundef %x, i32 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i32 @llvm.usub.sat.i32(i32 %x, i32 %y)
+// CHECK-X64: ret i32 %[[VAR0:.*]]
+
+unsigned __int64 test_sub_sat_u64(unsigned __int64 x, unsigned __int64 y) {
+  return _sat_sub_u64(x, y);
+}
+// CHECK-X64-LABEL: define dso_local noundef i64 @test_sub_sat_u64(i64 noundef %x, i64 noundef %y)
+// CHECK-X64: %[[VAR0:.*]] = tail call i64 @llvm.usub.sat.i64(i64 %x, i64 %y)
+// CHECK-X64: ret i64 %[[VAR0:.*]]
+
 #endif // defined(__x86_64__)

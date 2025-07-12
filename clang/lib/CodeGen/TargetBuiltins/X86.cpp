@@ -2968,6 +2968,34 @@ Value *CodeGenFunction::EmitX86BuiltinExpr(unsigned BuiltinID,
     Ops[2] = Builder.CreateZExt(Ops[2], Int64Ty);
     return Builder.CreateCall(F, Ops);
   }
+  case X86::BI_sat_add_i8:
+  case X86::BI_sat_add_i16:
+  case X86::BI_sat_add_i32:
+  case X86::BI_sat_add_i64:
+    return Builder.CreateCall(
+        CGM.getIntrinsic(Intrinsic::sadd_sat, Ops[0]->getType()),
+        {Ops[0], Ops[1]});
+  case X86::BI_sat_add_u8:
+  case X86::BI_sat_add_u16:
+  case X86::BI_sat_add_u32:
+  case X86::BI_sat_add_u64:
+    return Builder.CreateCall(
+        CGM.getIntrinsic(Intrinsic::uadd_sat, Ops[0]->getType()),
+        {Ops[0], Ops[1]});
+  case X86::BI_sat_sub_i8:
+  case X86::BI_sat_sub_i16:
+  case X86::BI_sat_sub_i32:
+  case X86::BI_sat_sub_i64:
+    return Builder.CreateCall(
+        CGM.getIntrinsic(Intrinsic::ssub_sat, Ops[0]->getType()),
+        {Ops[0], Ops[1]});
+  case X86::BI_sat_sub_u8:
+  case X86::BI_sat_sub_u16:
+  case X86::BI_sat_sub_u32:
+  case X86::BI_sat_sub_u64:
+    return Builder.CreateCall(
+        CGM.getIntrinsic(Intrinsic::usub_sat, Ops[0]->getType()),
+        {Ops[0], Ops[1]});
   case X86::BI_ReadWriteBarrier:
   case X86::BI_ReadBarrier:
   case X86::BI_WriteBarrier: {

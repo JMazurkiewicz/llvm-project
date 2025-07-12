@@ -53,6 +53,22 @@ unsigned __int64 __shiftleft128(unsigned __int64 _LowPart,
 unsigned __int64 __shiftright128(unsigned __int64 _LowPart,
                                  unsigned __int64 _HighPart,
                                  unsigned char _Shift);
+signed char _sat_add_i8(signed char, signed char);
+signed short _sat_add_i16(signed short, signed short);
+signed int _sat_add_i32(signed int, signed int);
+signed __int64 _sat_add_i64(signed __int64, signed __int64);
+unsigned char _sat_add_u8(unsigned char, unsigned char);
+unsigned short _sat_add_u16(unsigned short, unsigned short);
+unsigned int _sat_add_u32(unsigned int, unsigned int);
+unsigned __int64 _sat_add_u64(unsigned __int64, unsigned __int64);
+signed char _sat_sub_i8(signed char, signed char);
+signed short _sat_sub_i16(signed short, signed short);
+signed int _sat_sub_i32(signed int, signed int);
+signed __int64 _sat_sub_i64(signed __int64, signed __int64);
+unsigned char _sat_sub_u8(unsigned char, unsigned char);
+unsigned short _sat_sub_u16(unsigned short, unsigned short);
+unsigned int _sat_sub_u32(unsigned int, unsigned int);
+unsigned __int64 _sat_sub_u64(unsigned __int64, unsigned __int64);
 #endif
 
 #if defined(__i386__) || (defined(__x86_64__) && !defined(__arm64ec__))
